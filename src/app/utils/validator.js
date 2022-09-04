@@ -21,6 +21,7 @@ export const validator = (data, config) => {
         if (!/^(https:\/\/)?github\.com\/\S+$/g.test(data))
           return config.message;
         break;
+      default:
     }
   }
   for (const fieldName in data) {

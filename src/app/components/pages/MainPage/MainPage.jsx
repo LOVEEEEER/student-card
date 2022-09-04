@@ -9,7 +9,17 @@ const MainPage = () => {
     history.push("/edit");
   };
   const userStorage = fromStorage("userInfo");
-  console.log(userStorage);
+  const handleCorrentAges = (year) => {
+    const ageCount = new Date().getFullYear() - year;
+    const lastOne = Number(ageCount.toString().slice(-1));
+    console.log(lastOne);
+    if (ageCount > 4 && ageCount < 15) return `${ageCount} лет`;
+    if (lastOne === 1) return `${ageCount} год`;
+    if ([2, 3, 4].indexOf(lastOne) > -1) {
+      return `${ageCount} года`;
+    }
+    return `${ageCount} лет`;
+  };
   return (
     <>
       <main className="main">
@@ -32,7 +42,8 @@ const MainPage = () => {
                   </li>
                   <li className="main-content__item">
                     <strong>Год рождения: </strong>
-                    {userStorage.birth} год
+                    {userStorage.birth} год (
+                    {handleCorrentAges(userStorage.birth)})
                   </li>
                   <li className="main-content__item">
                     <strong>Вебсайт: </strong>
